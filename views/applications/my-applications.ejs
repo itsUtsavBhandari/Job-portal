@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications - Elevate Workforce Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #64748b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin: 0 0.25rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+            background-color: #eff6ff;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--card-bg) 0%, #f1f5f9 100%);
+            padding: 3rem 0 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            background: var(--light-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        /* Application Cards */
+        .applications-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .application-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .application-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .application-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .application-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .application-header {
+            display: flex;
+            justify-content: between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .application-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .application-company {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .application-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .application-meta-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .application-meta-item i {
+            margin-right: 0.5rem;
+            width: 16px;
+        }
+
+        .application-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        /* Badges */
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-primary {
+            background-color: #eff6ff;
+            color: var(--primary-color);
+        }
+
+        .badge-success {
+            background-color: #f0fdf4;
+            color: var(--success-color);
+        }
+
+        .badge-warning {
+            background-color: #fffbeb;
+            color: var(--warning-color);
+        }
+
+        .badge-danger {
+            background-color: #fef2f2;
+            color: var(--danger-color);
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline-primary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .empty-state-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .empty-state-text {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Resume Link */
+        .resume-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .resume-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        .resume-link i {
+            margin-right: 0.5rem;
+        }
+
+        /* Table Alternative */
+        .table {
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .table th {
+            background: var(--light-bg);
+            border: none;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: 1rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .table td {
+            border: none;
+            padding: 1rem;
+            vertical-align: middle;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: var(--light-bg);
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .application-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .application-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .application-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/jobs">
+                <i class="fas fa-briefcase me-2"></i>Elevate Workforce
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/jobs">Browse Jobs</a>
+                <a class="nav-link active" href="/applications/my-applications">My Applications</a>
+                <a class="nav-link" href="/auth/logout">
+                    <i class="fas fa-user me-1"></i><%= user.name %> - Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="margin-top: 80px;">
+        <div class="container">
+            <h1 class="page-title">
+                <i class="fas fa-file-alt me-3"></i>My Applications
+            </h1>
+            <p class="page-subtitle">Track your job applications and their status</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="section-title mb-0">
+                            <i class="fas fa-list"></i>Application History
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <% if (applications.length === 0) { %>
+                            <div class="empty-state">
+                                <i class="fas fa-file-alt empty-state-icon"></i>
+                                <h3 class="empty-state-title">No Applications Yet</h3>
+                                <p class="empty-state-text">You haven't applied to any jobs yet. Start browsing and apply to jobs that interest you!</p>
+                                <a href="/jobs" class="btn btn-primary">
+                                    <i class="fas fa-search me-2"></i>Browse Jobs
+                                </a>
+                            </div>
+                        <% } else { %>
+                            <div class="applications-grid">
+                                <% applications.forEach(app => { %>
+                                    <div class="application-card">
+                                        <div class="application-header">
+                                            <div class="flex-grow-1">
+                                                <h4 class="application-title"><%= app.job_title %></h4>
+                                                <div class="application-company">
+                                                    <i class="fas fa-building me-1"></i><%= app.company_name %>
+                                                </div>
+                                            </div>
+                                            <span class="badge <%= app.status === 'pending' ? 'badge-warning' : app.status === 'accepted' ? 'badge-success' : app.status === 'rejected' ? 'badge-danger' : 'badge-primary' %>">
+                                                <%= app.status.toUpperCase() %>
+                                            </span>
+                                        </div>
+                                        
+                                        <div class="application-meta">
+                                            <div class="application-meta-item">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                Applied on <%= new Date(app.applied_at).toLocaleDateString('en-US', { 
+                                                    year: 'numeric', 
+                                                    month: 'long', 
+                                                    day: 'numeric' 
+                                                }) %>
+                                            </div>
+                                            <% if (app.resume_path) { %>
+                                                <div class="application-meta-item">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                    <a href="<%= app.resume_path %>" target="_blank" class="resume-link">
+                                                        View Resume
+                                                    </a>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                        
+                                        <div class="application-footer">
+                                            <div class="d-flex gap-2">
+                                                <a href="/jobs/<%= app.job_id %>" class="btn btn-outline-primary btn-sm">
+                                                    <i class="fas fa-eye me-1"></i>View Job
+                                                </a>
+                                            </div>
+                                            
+                                            <% if (app.status === 'pending') { %>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-clock me-1"></i>Under Review
+                                                </small>
+                                            <% } else if (app.status === 'accepted') { %>
+                                                <small class="text-success">
+                                                    <i class="fas fa-check-circle me-1"></i>Congratulations! You've been selected
+                                                </small>
+                                            <% } else if (app.status === 'rejected') { %>
+                                                <small class="text-danger">
+                                                    <i class="fas fa-times-circle me-1"></i>Application not selected
+                                                </small>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add smooth animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate application cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.application-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Add click animation to application cards
+        document.querySelectorAll('.application-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

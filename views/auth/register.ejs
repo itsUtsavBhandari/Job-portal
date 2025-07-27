@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Elevate Workforce Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #4f46e5;
+            --primary-green: #10b981;
+            --primary-yellow: #f59e0b;
+            --primary-red: #ef4444;
+            --primary-purple: #8b5cf6;
+            --primary-pink: #ec4899;
+            --primary-cyan: #06b6d4;
+            --primary-orange: #f97316;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            padding: 2rem 0;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatUpDown 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 70%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 10%;
+            left: 25%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .register-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .register-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            animation: slideInUp 1s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .register-header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-cyan) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .register-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        .register-icon i {
+            font-size: 2rem;
+        }
+
+        .register-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-subtitle {
+            opacity: 0.9;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .register-body {
+            padding: 3rem 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 0.8rem;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .required {
+            color: var(--primary-red);
+            font-weight: 800;
+        }
+
+        .form-control, .form-select {
+            border: 3px solid transparent;
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            font-size: 1rem;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, var(--primary-green), var(--primary-cyan)) border-box;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .form-control:focus, .form-select:focus {
+            outline: none;
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+        }
+
+        .form-text {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Role Selection */
+        .role-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .role-option {
+            position: relative;
+        }
+
+        .role-option input[type="radio"] {
+            display: none;
+        }
+
+        .role-option label {
+            display: block;
+            padding: 2rem 1.5rem;
+            border: 3px solid transparent;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, var(--primary-blue), var(--primary-purple)) border-box;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-option label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .role-option input[type="radio"]:checked + label::before {
+            left: 0;
+        }
+
+        .role-option input[type="radio"]:checked + label {
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1)) padding-box,
+                        linear-gradient(45deg, var(--primary-blue), var(--primary-purple)) border-box;
+            color: var(--primary-blue);
+            transform: scale(1.05);
+        }
+
+        .role-option i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .role-option .role-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .role-option .role-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* Company Fields */
+        .company-fields {
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.05), rgba(6, 182, 212, 0.05));
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 3px dashed var(--primary-green);
+            transition: all 0.5s ease;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .company-fields.show {
+            border-style: solid;
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1));
+            transform: scale(1.02);
+        }
+
+        .company-fields-title {
+            color: var(--primary-green);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-green), var(--primary-cyan));
+            border: none;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-purple));
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .alert {
+            border-radius: 20px;
+            border: none;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: slideInDown 0.5s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-danger {
+            background: linear-gradient(45deg, rgba(239, 68, 68, 0.1), rgba(249, 115, 22, 0.1));
+            color: var(--primary-red);
+            border-left: 5px solid var(--primary-red);
+        }
+
+        .register-links {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .register-links p {
+            color: #64748b;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .register-links a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .register-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background: linear-gradient(45deg, var(--primary-green), var(--primary-cyan));
+            transition: all 0.3s ease;
+        }
+
+        .register-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .register-links a:hover {
+            color: var(--primary-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Password Strength */
+        .password-strength {
+            margin-top: 1rem;
+        }
+
+        .strength-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .strength-fill {
+            height: 100%;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .strength-text {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .register-body {
+                padding: 2rem 1.5rem;
+            }
+            
+            .role-selection {
+                grid-template-columns: 1fr;
+            }
+            
+            .register-title {
+                font-size: 1.5rem;
+            }
+            
+            .register-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <div class="register-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h1 class="register-title">Join Our Community!</h1>
+                <p class="register-subtitle">Create your account and start your amazing journey</p>
+            </div>
+            
+            <div class="register-body">
+                <% if (errors.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Please fix the following errors:</strong>
+                        <ul class="mb-0 mt-2 list-unstyled">
+                            <% errors.forEach(error => { %>
+                                <li><i class="fas fa-times me-1"></i><%= error.msg %></li>
+                            <% }); %>
+                        </ul>
+                    </div>
+                <% } %>
+
+                <form method="POST" action="/auth/register" id="registerForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">
+                            <i class="fas fa-user me-2"></i>Full Name <span class="required">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="name" name="name" 
+                               value="<%= formData.name || '' %>" required 
+                               placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope me-2"></i>Email Address <span class="required">*</span>
+                        </label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               value="<%= formData.email || '' %>" required 
+                               placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock me-2"></i>Password <span class="required">*</span>
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" required 
+                               placeholder="Create a strong password">
+                        <div class="form-text">Password must be at least 6 characters long</div>
+                        <div class="password-strength" id="passwordStrength" style="display: none;">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <div class="strength-text" id="strengthText"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-users me-2"></i>Account Type <span class="required">*</span>
+                        </label>
+                        <div class="role-selection">
+                            <div class="role-option">
+                                <input type="radio" id="job_seeker" name="role" value="job_seeker" 
+                                       <%= formData.role === 'job_seeker' ? 'checked' : '' %>>
+                                <label for="job_seeker">
+                                    <i class="fas fa-user-tie"></i>
+                                    <div class="role-title">Job Seeker</div>
+                                    <div class="role-desc">Looking for opportunities</div>
+                                </label>
+                            </div>
+                            <div class="role-option">
+                                <input type="radio" id="company" name="role" value="company" 
+                                       <%= formData.role === 'company' ? 'checked' : '' %>>
+                                <label for="company">
+                                    <i class="fas fa-building"></i>
+                                    <div class="role-title">Company</div>
+                                    <div class="role-desc">Hiring talented people</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="companyFields" class="company-fields" style="display: none;">
+                        <h6 class="company-fields-title">
+                            <i class="fas fa-building me-2"></i>Company Information
+                        </h6>
+                        
+                        <div class="form-group">
+                            <label for="company_name" class="form-label">
+                                Company Name <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="company_name" name="company_name" 
+                                   value="<%= formData.company_name || '' %>" 
+                                   placeholder="Enter your company name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company_description" class="form-label">Company Description</label>
+                            <textarea class="form-control" id="company_description" name="company_description" 
+                                      rows="4" placeholder="Brief description of your company..."><%= formData.company_description || '' %></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">
+                                    <i class="fas fa-phone me-2"></i>Phone Number
+                                </label>
+                                <input type="tel" class="form-control" id="phone" name="phone" 
+                                       value="<%= formData.phone || '' %>" 
+                                       placeholder="+977-98XXXXXXXX">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="address" class="form-label">
+                                    <i class="fas fa-map-marker-alt me-2"></i>Address
+                                </label>
+                                <input type="text" class="form-control" id="address" name="address" 
+                                       value="<%= formData.address || '' %>" 
+                                       placeholder="City, Nepal">
+                            </div>
+                        </div>
+                    </div>
